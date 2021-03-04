@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="header">
+            <h1 class="title">The Playlist</h1>
+            <p class="desc">Here you can create your own playlist, edit your already existing playlist, add songs, and
+                show it to the
+                world!</p>
+        </div>
+        <div class="middle">
+            <button class="btn-playlist" mat-raised-button color="primary" (click)="addPlaylist()">
+                <span class="material-icons">
+                    playlist_add
+                </span>
+                New Playlist
+            </button>
+            <div class="play-list">
+                <div class="card" *ngFor="let data of dataPlaylist; let i = index">
+                    <div class="card-header">
+                        <p class="playlist-name">{{data.name}}</p>
+                        <p class="total-song-playlist">total {{data.songs.length}} songs, {{countDurations(data.songs)}} minutes</p>
+                        <br>
+                        <p>{{data.description}}</p>
+                    </div>
+                    <div class="card-middle">
+                        <div *ngFor="let music of data.songs">
+                            <div class="item-list">
+                                <div class="icon-music">
+                                    <span class="material-icons">
+                                        music_note
+                                    </span>
+                                </div>
+                                <div>
+                                    <p>{{music.songTitle}}</p>
+                                    <p>{{music.artist}} · {{music.duration}} minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-playlist">
+                        <button (click)="removePlaylist(data)" mat-button color="warn">DELETE</button>
+                        <button (click)="openUpdate(data, data.id)" mat-button color="none">EDIT</button>
+                    </div>
+                </div>
+                <!-- <div class="card" ngFor="let data of dataPlaylist; let i = index">
+                    <div class="card-header">
+                        <p class="playlist-name">{{data.name.</p>
+                        <p class="total-song-playlist">total {{data.songs.length. songs, {{countDurations(data.songs). minutes</p>
+                        <br>
+                        <p>{{data.description.</p>
+                    </div>
+                    <div class="card-middle">
+                        <div ngFor="let music of data.songs">
+                            <div class="item-list">
+                                <div class="icon-music">
+                                    <span class="material-icons">
+                                        music_note
+                                    </span>
+                                </div>
+                                <div>
+                                    <p>{{music.songTitle.</p>
+                                    <p>{{music.artist. · {{music.duration} minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-playlist">
+                        <button (click)="removePlaylist(data)" mat-button color="warn">DELETE</button>
+                        <button (click)="openUpdate(data, i)" mat-button color="none">EDIT</button>
+                    </div>
+                </div> -->
+                
+            </div>
+        </div>
+
+    </div>
+</div>

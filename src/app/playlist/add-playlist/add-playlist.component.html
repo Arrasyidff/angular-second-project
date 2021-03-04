@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <h1>Create New Playlist</h1>
+        <form [formGroup]="addPlaylistForm">
+            <mat-form-field>
+                <mat-label>Playlist name *</mat-label>
+                <input matInput formControlName="name" type="text">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description *</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+            <div formArrayName="songs">
+                <div *ngFor="let song of songs.controls; let i = index">
+                    <div [formGroup]="song" class="form-array">
+                        <div class="input-array">
+                            <mat-form-field>
+                                <mat-label>Song title *</mat-label>
+                                <input matInput formControlName="songTitle" type="text">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Artist *</mat-label>
+                                <input matInput formControlName="artist" type="text">
+                            </mat-form-field>
+                            <mat-form-field class="input-array-duration">
+                                <mat-label>Duration *</mat-label>
+                                <input matInput formControlName="duration" type="number"> <span>number</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="btn-action">
+                            <mat-icon 
+                            *ngIf="songs.controls.length !== 1 || songs.controls.length < 1"
+                            class="btn-act" color="warn" (click)="deleteSong(i)">
+                                <span class="material-icons">remove_circle</span>
+                            </mat-icon>
+                            <mat-icon class="btn-act" (click)="addSong()" color="primary">
+                                <span class="material-icons">add_circle</span>
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="footer">
+            <div>
+                <button mat-raised-button color="warn"
+                (click)="close()"
+                >Cancel</button>
+                <button mat-raised-button color="primary" [disabled]="addPlaylistForm.invalid"
+                (click)="submitPlaylist()"
+                >Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
